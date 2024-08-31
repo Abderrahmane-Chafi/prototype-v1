@@ -1,0 +1,76 @@
+﻿@model Models.Blog
+
+<section class="section">
+    <div class="container">
+        <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+            <input asp-for="ImgUrl" hidden />
+            <div class=" row">
+                <div class="col-10">
+                    <div class="border p-3 mt-4 row">
+                        <div class="col-12 pb-2">
+                            <h2 class="text-primary">@(Model.Id != 0 ? "Update" : "Create") a blog</h2>
+                            <hr />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Body"></label>
+                            <textarea class="form-control" id="Email" asp-for="Body" rows="6"></textarea>
+                            <span asp-validation-for="Body" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label asp-for="ImgUrl"></label>
+                                <input id="UploadBox" type="file" name="file" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            @if (Model.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            }
+                            else
+                            {
+                                <button onclick="return ValidateInput()" type="submit" class="btn btn-primary">Create</button>
+                            }
+                            <a asp-controller="BlogManagement" asp-action="Index" class="btn btn-secondary">
+                                Return to list
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2 ">
+                    <img class="mb-1 " src="@Model.ImgUrl"
+                         style="width: 100%;border-radius:5px;border:1px solid #bbb9b9" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    
+
+</section>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        function ValidateInput() {
+            if (document.getElementById("UploadBox").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Pleas upload an Image!',
+                });
+                return false;
+            }
+        }
+    </script>
+}
+

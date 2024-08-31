@@ -1,0 +1,75 @@
+﻿@model Models.ViewModels.ClientInformationsVM
+<partial name="_Notification" />
+<!-- Page Title -->
+<div class="page-title dark-background" data-aos="fade">
+    <div class="container position-relative">
+        <h1>
+            Recevez une analyse gratuite pour votre projet :
+        </h1>
+        <p>
+            Vous souhaitez savoir ce que nous pouvons faire pour vous ?
+            Remplissez le formulaire ci-dessous et nous vous contacterons dans les 48 heures pour une analyse gratuite.
+            Pas de frais, pas d'obligations, pas de discours commercial ennuyeux. C'est garanti!
+        </p>
+    </div>
+</div><!-- End Page Title -->
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+           
+
+            <div class="col">
+                <form method="post"data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+
+                        <div class="col-md-6">
+                            <label asp-for="clientInformation.Name"></label>
+                            <input id="Name" asp-for="clientInformation.Name" class="form-control" />
+                            <span asp-validation-for="clientInformation.Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <label asp-for="clientInformation.CompanyName"></label>
+                            <input id="CompanyName" asp-for="clientInformation.CompanyName" class="form-control" />
+                            <span asp-validation-for="clientInformation.CompanyName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="clientInformation.PhoneNumber"></label>
+                            <input id="PhoneNumber" asp-for="clientInformation.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="clientInformation.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="clientInformation.Email"></label>
+                            <input id="Email" asp-for="clientInformation.Email" class="form-control" type="email" />
+                            <span asp-validation-for="clientInformation.Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="clientInformation.Question"></label>
+                            <textarea class="form-control" id="Question" asp-for="clientInformation.Question" rows="6"></textarea>
+                            <span asp-validation-for="clientInformation.Question" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-12">
+                            <label asp-for="clientInformation.HowDidYouFindUs"></label>
+                            <select asp-for="clientInformation.HowDidYouFindUs" asp-items="@Model.meansList" class="form-select">
+                                <option disabled selected></option>
+                            </select>
+                            <span asp-validation-for="clientInformation.HowDidYouFindUs" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="submit">Envoyer</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div><!-- End Contact Form -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Contact Section -->
