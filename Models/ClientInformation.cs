@@ -19,8 +19,9 @@ namespace Models
         public string CompanyName { get; set; }
         [DisplayName("Numéro de téléphone")]
         [Required(ErrorMessage = "Le champ Numéro de téléphone est obligatoire")]
-        [StringLength(18, ErrorMessage = "Le champ Numéro de téléphone ne peut pas dépasser 17 caractères. ")]
-
+        [MaxLength(18, ErrorMessage = "Le champ Numéro de téléphone ne peut pas dépasser 18 caractères. ")]
+        [MinLength(13, ErrorMessage = "Le champ Numéro de téléphone ne peut pas contenir moins de 13 caractères. ")]
+        [RegularExpression(@"^(?:\+212|07|06)[0-9 ]*$", ErrorMessage = "Le numéro de téléphone doit commencer par +212, 07 ou 06 et ne peut contenir que des +, des chiffres et des espaces.")]
         public string PhoneNumber { get; set; }
         [DisplayName("E-mail")]
         [Required(ErrorMessage = "Le champ Numéro de téléphone est obligatoire")]
