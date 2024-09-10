@@ -24,6 +24,10 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ./publish_output
 
+      # Optional: Debugging step to list the contents of the publish_output directory
+      - name: List publish output directory
+        run: dir ./publish_output
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -58,4 +62,4 @@ jobs:
         with:
           app-name: 'ca-web-solutions'
           slot-name: 'Production'
-          package: ./publish_output
+          package: .
