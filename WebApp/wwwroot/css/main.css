@@ -10,6 +10,14 @@
 # Font & Color Variables
 # Help: https://bootstrapmade.com/color-system/
 --------------------------------------------------------------*/
+.footer[b-7882z672yd] {
+    position: static; /* Changed from 'absolute' */
+    top: 0; /* Changed from 'bottom: 0;' */
+    width: auto; /* Changed from '100%' */
+    white-space: normal; /* Changed from 'nowrap' */
+    line-height: normal; /* Changed from '60px' */
+}
+
 /* Fonts */
 .toast-success {
     background-color: green !important;
