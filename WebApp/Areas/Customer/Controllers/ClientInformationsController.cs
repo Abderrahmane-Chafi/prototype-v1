@@ -1,5 +1,6 @@
 ﻿using DataAcess.Repository;
 using DataAcess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
@@ -14,9 +15,11 @@ namespace WebApp.Areas.Customer.Controllers
     public class ClientInformationsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ClientInformationsController(IUnitOfWork unitOfWork)
+        private readonly IEmailSender _emailSender;
+        public ClientInformationsController(IUnitOfWork unitOfWork,IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender; 
         }
         public IActionResult Index()
         {
@@ -46,6 +49,7 @@ namespace WebApp.Areas.Customer.Controllers
                 _unitOfWork.ClientInformation.Add(obj.clientInformation);            
                 _unitOfWork.Save();
                 TempData["success"] = "informations envoyées avec succès !";
+                _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client has been added", obj.clientInformation.Name + " from " + obj.clientInformation.CompanyName + " has been added to the database");
                 return RedirectToAction("Index");
             }
             else return View(obj);
