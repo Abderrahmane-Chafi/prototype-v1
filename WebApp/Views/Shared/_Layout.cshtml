@@ -42,7 +42,7 @@
                     <li><a class="" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
                     <li><a class="" asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a></li>
                     @* <li><a>Réalisations</a></li>
-                    <li><a >Blog</a></li>       *@          
+                    <li><a >Blog</a></li>       *@
                     @if (User.IsInRole(SD.Role_Admin))
                     {
                         <li class="dropdown">
@@ -54,9 +54,9 @@
                             </ul>
                         </li>
                         <li><partial name="_LoginPartial" /></li>
-                        
+
                     }
-                    
+
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

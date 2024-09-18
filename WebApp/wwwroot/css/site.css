@@ -16,3 +16,24 @@ html {
 body {
   margin-bottom: 60px;
 }
+.header .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.social-icons .navbar-nav {
+    margin-left: auto;
+}
+
+.social-icons .nav-link {
+    padding: 0.5rem 0.5rem;
+}
+
+@media (max-width: 991px) {
+    .social-icons {
+        position: absolute;
+        top: 50%;
+        right: 70px;
+        transform: translateY(-50%);
+    }
+}
