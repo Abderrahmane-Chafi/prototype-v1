@@ -58,37 +58,66 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-            <a asp-area="" asp-controller="Home" asp-action="Index" class=" d-flex align-items-center me-auto">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <img style="width:80px" class="img-fluid" src="/images/N1.png" alt="Logo" />
-            </a>
+            <div class=" d-flex align-items-center me-auto row">
+                <div class="col-2">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <!-- Uncomment the line below if you also wish to use an image logo -->
+                        <!-- <img src="assets/img/logo.png" alt=""> -->
+                        <img  class="img-fluid w-100" src="/images/N1.png" alt="Logo" />
+                    </a>
+                </div>
+                <div class="col">
+                    <nav id="navmenu" class="navmenu">
+                        <ul>
+                            <li><a class="" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
+                            <li><a class="" asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a></li>
+                            @* <li><a>Réalisations</a></li>
+                            <li><a >Blog</a></li>       *@
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <li class="dropdown">
+                                    <a href="#"><span>Management section</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                    <ul>
+                                        <li><a asp-area="Admin" asp-controller="BlogManagement" asp-action="Index">Blogs management</a></li>
+                                        <li><a asp-area="Admin" asp-controller="ProjectsManagement" asp-action="Index">Projects management</a></li>
+                                        <li><a asp-area="Admin" asp-controller="ClientInformations" asp-action="Index">Client informations</a></li>
+                                    </ul>
+                                </li>
+                                <li><partial name="_LoginPartial" /></li>
+
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a class="" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
-                    <li><a class="" asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a></li>
-                    @* <li><a>Réalisations</a></li>
-                    <li><a >Blog</a></li>       *@
-                    @if (User.IsInRole(SD.Role_Admin))
-                    {
-                        <li class="dropdown">
-                            <a href="#"><span>Management section</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a asp-area="Admin" asp-controller="BlogManagement" asp-action="Index">Blogs management</a></li>
-                                <li><a asp-area="Admin" asp-controller="ProjectsManagement" asp-action="Index">Projects management</a></li>
-                                <li><a asp-area="Admin" asp-controller="ClientInformations" asp-action="Index">Client informations</a></li>
-                            </ul>
-                        </li>
-                        <li><partial name="_LoginPartial" /></li>
+                    <li class="d-none d-md-block d-sm-block d-lg-none">
+                        <a class="" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+                    </li>
+                    <li class="d-none d-md-block d-sm-block d-lg-none">
+                        <a class="" asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a>
+                    </li>
 
-                    }
 
+
+
+                    <li>
+                        <a class="" href="https://web.facebook.com/profile.php?id=61565205775651" target="_blank"><i class="bi bi-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a class="" href="https://www.linkedin.com/company/ca-web-solutions0" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    </li>
+                    
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
         </div>
     </header>
+
     <main role="main" class="main">
         <partial name="_Notification" />
         @RenderBody()
@@ -137,7 +166,6 @@
     <script>
         AOS.init();
     </script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
