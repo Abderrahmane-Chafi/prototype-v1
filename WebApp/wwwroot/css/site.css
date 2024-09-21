@@ -38,4 +38,9 @@ body {
         transform: translateY(-50%);
     }
 }
-
+.original {
+    display:block
+}
+.duplicate {
+    display: none
+}
