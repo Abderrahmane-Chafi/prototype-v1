@@ -102,10 +102,25 @@
                     <li class="duplicate">
                         <a asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a>
                     </li>
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <li class="dropdown duplicate">
+                            <a href="#"><span>Management section</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a asp-area="Admin" asp-controller="BlogManagement" asp-action="Index">Blogs management</a></li>
+                                <li><a asp-area="Admin" asp-controller="ProjectsManagement" asp-action="Index">Projects management</a></li>
+                                <li><a asp-area="Admin" asp-controller="ClientInformations" asp-action="Index">Client informations</a></li>
+                            </ul>
+                        </li>
+                        <li><partial name="_LoginPartial" /></li>
 
-
-
-
+                    }
+                    <li>
+                        <a href="mailto:contact@ca-web-solutions.net"><i class="bi bi-envelope"></i></a>
+                    </li>
+                    <li>
+                        <a class="" href="https://www.instagram.com/cawebsolutions/" target="_blank"><i class="bi bi-instagram"></i></a>
+                    </li>
                     <li>
                         <a class="" href="https://web.facebook.com/profile.php?id=61565205775651" target="_blank"><i class="bi bi-facebook"></i></a>
                     </li>
@@ -138,6 +153,7 @@
                 </div>
                 <div class="col d-flex justify-content-end social-links">
                     <a href="mailto:contact@ca-web-solutions.net"><i class="bi bi-envelope"></i></a>
+                    <a class="" href="https://www.instagram.com/cawebsolutions/" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://web.facebook.com/profile.php?id=61565205775651" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.linkedin.com/company/ca-web-solutions0" target="_blank"><i class="bi bi-linkedin"></i></a>
                 </div>

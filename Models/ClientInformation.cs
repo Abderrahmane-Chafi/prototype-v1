@@ -27,7 +27,7 @@ namespace Models
         [Required(ErrorMessage = "Le champ Numéro de téléphone est obligatoire")]
 
         public string Email { get; set; }
-        [DisplayName("Exprimez-vous")]
+        [DisplayName("Comment pouvons-nous vous aider?")]
         [Required(ErrorMessage = "Le champ Exprimez-vous est obligatoire")]
 
         public string Question { get; set; }
