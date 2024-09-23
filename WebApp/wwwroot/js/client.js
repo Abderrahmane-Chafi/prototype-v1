@@ -20,6 +20,10 @@ function loadDataTable() {
             { "data": "question", "widht": "15%" },
             { "data": "howDidYouFindUs", "widht": "15%" },
         ],
+        "responsive": true,
+        "autoWidth": false,   // Helps in adjusting column widths automatically
+        "scrollX": true       // Adds horizontal scrolling if the table is wide for mobile
+
     });
 }
 
