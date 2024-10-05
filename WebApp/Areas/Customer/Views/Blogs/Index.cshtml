@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Blog";
+    ViewData["MetaDescription"] = "Découvrez des conseils, astuces, et stratégies pour créer des applications web ainsi que des sites web de qualité et faire évoluer votre entreprise. Chaque article est basé sur des solutions éprouvées et des outils testés pour offrir une expérience utilisateur optimale.";
+    ViewData["MetaKeywords"] = "site internet, agence de développement web casablanca, développement web, consultation gratuite, application web ,CA Web Solutions";
+}
+@model IEnumerable<Models.Blog>
+@functions {
+    public static string Truncate(string text, int maxLength)
+    {
+        if (string.IsNullOrEmpty(text) || text.Length <= maxLength)
+            return text;
+
+        return text.Substring(0, maxLength) + "...";
+    }
+}
+
+<div class="page-title dark-background" data-aos="fade">
+    <div class="container position-relative">
+        <h1>
+            Bienvenue sur
+            Notre Blog !
+        </h1>
+        <p>
+            Découvrez des conseils, astuces, et stratégies pour créer des applications web ainsi que des sites web de qualité et faire évoluer votre entreprise. Chaque article est basé sur des solutions éprouvées et des outils testés pour offrir une expérience utilisateur optimale.
+            <br />Ici, vous trouverez des informations pratiques pour réussir vos projets digitaux !<br />
+            <span class="fw-bold">
+                CONSTRUISONS ENSEMBLE QUELQUE CHOSE D'INCROYABLE !
+            </span>
+        </p>
+    </div>
+</div>
+
+<section class="section ">
+    <div class="row m-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@item.ImgUrl" class="card-img-top w-100" alt="Blog Image" style="height: 300px;">
+                    <div class="card-body">
+                        <h2 class="card-title">@item.Title</h2>
+                        <p class="card-text">@Truncate(item.Body, 250)</p>
+                        <a asp-controller="Blogs" asp-route-id="@item.Id" asp-action="detail" class="btn btn-dark">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        } 
+    </div>
+</section>

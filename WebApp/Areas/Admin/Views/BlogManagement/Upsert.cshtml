@@ -23,6 +23,11 @@
                             <span asp-validation-for="Body" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
+                            <label asp-for="ReadingTime"></label>
+                            <input asp-for="ReadingTime" class="form-control" />
+                            <span asp-validation-for="ReadingTime" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
                             <div class="mb-3">
                                 <label asp-for="ImgUrl"></label>
                                 <input id="UploadBox" type="file" name="file" class="form-control" />

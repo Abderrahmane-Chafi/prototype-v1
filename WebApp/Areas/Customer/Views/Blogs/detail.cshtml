@@ -1,0 +1,81 @@
+﻿@model Models.Blog
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["MetaDescription"] = "Découvrez des conseils, astuces, et stratégies pour créer des applications web ainsi que des sites web de qualité et faire évoluer votre entreprise. Chaque article est basé sur des solutions éprouvées et des outils testés pour offrir une expérience utilisateur optimale.";
+    ViewData["MetaKeywords"] = "site internet, agence de développement web casablanca, développement web, consultation gratuite, application web ,CA Web Solutions, Blog";
+}
+
+<div class="page-title dark-background" style="padding: 60px 0 80px 0;">
+
+</div>
+<section class="section">
+    <div class="container">
+        <div class="row m-5">
+            <div class="col-md-8 offset-md-2">
+                <article class="blog-post">
+                    <div class="">
+                        <div class="mb-2">
+                            <img style="height:50px;width:50px" class="rounded-circle" src="~/images/me.jpeg" />
+                            <small class="blog-post-meta fw-bold">
+                                Chafi Abderrahmane
+                            </small>
+                        </div>
+                        <h2 class="blog-post-title">@Model.Title</h2>  
+                        <small>@Model.ReadingTime minutes de lecture</small>
+                    </div>
+                    <section class="blog-post-content mt-0" style="padding:30px 0">
+                        <img src="@Model.ImgUrl" alt="Blog Image" class="img-fluid mb-4 w-100 border" />
+                        <p>@Model.Body</p>
+                        <hr />
+
+                        <div class="container ">
+                            <div class="row align-items-center">
+                                <div class="col-5 mx-2">
+                                    <p><small>@Model.CreatedAt.ToString("dd-MM-yyyy")</small></p>
+                                </div>
+                                <div class="col d-flex justify-content-end social-links">                                  
+                                    <!-- Facebook sharing -->
+                                    <a class="text-dark mx-1"
+                                       href="https://www.facebook.com/sharer/sharer.php?u=@(Url.Action("Details", "Blogs", new { area = "Customer", id = Model.Id }, Context.Request.Scheme))"
+                                       target="_blank">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+
+                                    <!-- LinkedIn sharing -->
+                                    <a class="text-dark mx-1"
+                                       href="https://www.linkedin.com/shareArticle?mini=true&url=@(Url.Action("Details", "Blogs", new { area = "Customer", id = Model.Id }, Context.Request.Scheme))"
+                                       target="_blank">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
+
+
+                                    <a class="text-dark mx-1" href="javascript:void(0);" onclick="copyLink()">
+                                        <i class="bi bi-link-45deg"></i>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <hr />
+                    </section>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function copyLink() {
+        // Copy the current page URL to the clipboard
+        var tempInput = document.createElement("input");
+        tempInput.value = window.location.href;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        // Show the Toastr notification
+        toastr.success("Lien copié dans le presse-papiers !");
+    }
+</script>
