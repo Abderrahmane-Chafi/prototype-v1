@@ -12,7 +12,7 @@ namespace DataAcess.Repository.IRepository
         IBlogRepository Blog { get; }
         IClientInformationRepository ClientInformation { get; }
         IRealisedProjectsRepository RealisedProjects { get; }
-
+        IFreeGuideEmailsRepository FreeGuideEmails { get; }
         void Save();
     }
 }

@@ -46,7 +46,8 @@ namespace WebApp.Areas.Customer.Controllers
         public IActionResult Index(ClientInformationsVM obj)
         {              
             if (ModelState.IsValid) {
-                _unitOfWork.ClientInformation.Add(obj.clientInformation);            
+                obj.clientInformation.type = "Normal";
+                _unitOfWork.ClientInformation.Add(obj.clientInformation);                
                 _unitOfWork.Save();
                 TempData["success"] = "informations envoyées avec succès !";
                 _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client has been added", obj.clientInformation.Name + " from " + obj.clientInformation.CompanyName + " has been added to the database");

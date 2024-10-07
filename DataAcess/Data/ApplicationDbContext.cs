@@ -16,6 +16,7 @@ namespace DataAcess.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<ClientInformation> ClientInformation { get; set; }
         public DbSet<RealisedProjects> RealisedProjects { get; set; }
+        public DbSet<FreeGuideEmails> FreeGuideEmails { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -35,5 +36,7 @@ namespace Models
         [Required(ErrorMessage = "Le champ Comment nous avez-vous trouvé ? est obligatoire")]
 
         public string HowDidYouFindUs { get; set; }
+        [ValidateNever]
+        public string type { get; set; }
     }
 }

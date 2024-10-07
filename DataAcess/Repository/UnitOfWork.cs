@@ -15,6 +15,7 @@ namespace DataAcess.Repository
         public IBlogRepository Blog { get; private set; }
         public IClientInformationRepository ClientInformation { get; private set; }
         public IRealisedProjectsRepository RealisedProjects { get; private set; }   
+        public IFreeGuideEmailsRepository FreeGuideEmails { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -22,6 +23,7 @@ namespace DataAcess.Repository
             Blog = new BlogRepository(_db);
             ClientInformation = new ClientInformationRepository(_db);
             RealisedProjects = new RealisedProjectsRepository(_db);
+            FreeGuideEmails = new FreeGuideEmailsRepository(_db);
         }
 
         public void Save()

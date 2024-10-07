@@ -1,0 +1,52 @@
+﻿@model Models.FreeGuideEmails
+
+@{
+    ViewData["Title"] = "Guide gratuit";
+    ViewData["MetaDescription"] = "Guide gratuit pour créer un site Web pour votre entreprise";
+    ViewData["MetaKeywords"] = "site internet, agence de développement web casablanca, développement web, consultation gratuite, application web ,CA Web Solutions, Guide gratuit";
+}
+
+
+<div class="page-title dark-background" data-aos="fade">
+    <div class="container position-relative">
+        <h1>
+            Guide gratuit :<br />
+            3 façons simples de créer un site Web pour votre entreprise
+        </h1>
+        <p>
+            Il existe plusieurs façons de créer un site web, et ici nous vous présentons 3 méthodes simples pour y parvenir.
+        </p>
+        <p>
+            Dans ce guide gratuit, nous vous expliquons exactement comment faire. Pas de jargon, pas de termes techniques compliqués, juste un aperçu facile à suivre étape par étape de ce qu’il faut faire.
+        </p>
+    </div>
+</div>
+
+<section id="contact" class="contact section">
+
+    <div class="container">
+
+        <div class="row gy-4">
+            <div class="col">
+                <form method="post">
+                    <div class="row gy-4 justify-content-center">
+
+                        <div class="col-md-6 d-flex flex-column align-items-center">
+                            <input id="Email" asp-for="Email" class="form-control mb-2" type="email" placeholder="E-mail" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="submit">Envoie-moi le guide</button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div><!-- End Contact Form -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Contact Section -->
