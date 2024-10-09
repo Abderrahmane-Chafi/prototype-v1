@@ -5,7 +5,7 @@
     ViewData["MetaKeywords"] = "site internet, agence de développement web casablanca, développement web, consultation gratuite, application web ,CA Web Solutions, Blog";
 }
 
-<div class="page-title dark-background" style="padding: 45px 0 80px 0;">
+<div class="page-title dark-background" style="padding: 50px 0 80px 0;">
 
 </div>
 <section class="section">
@@ -25,7 +25,7 @@
                     </div>
                     <section class="blog-post-content mt-0" style="padding:30px 0">
                         <img src="@Model.ImgUrl" alt="Blog Image" class="img-fluid mb-4 w-100 border" />
-                        <p>@Model.Body</p>
+                        <p>@Html.Raw(@Model.Body)</p>
                         <hr />
 
                         <div class="container ">

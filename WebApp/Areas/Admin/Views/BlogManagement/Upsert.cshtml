@@ -1,5 +1,7 @@
 ﻿@model Models.Blog
 
+<script src="https://cdn.tiny.cloud/1/gytusyr61ses25ozko5jut3nohwu6as2y7b8hhc3k6gogx07/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
 <section class="section">
     <div class="container">
         <form method="post" asp-action="Upsert" enctype="multipart/form-data">
@@ -76,6 +78,13 @@
                 return false;
             }
         }
+    </script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
     </script>
 }
 

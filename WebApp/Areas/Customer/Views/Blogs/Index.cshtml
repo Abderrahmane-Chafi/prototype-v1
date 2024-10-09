@@ -17,33 +17,33 @@
 <div class="page-title dark-background" data-aos="fade">
     <div class="container position-relative">
         <h1>
-            Bienvenue sur
-            Notre Blog !
+            Bienvenue sur notre blog !
         </h1>
         <p>
-            Découvrez des conseils, astuces, et stratégies pour créer des applications web ainsi que des sites web de qualité et faire évoluer votre entreprise. Chaque article est basé sur des solutions éprouvées et des outils testés pour offrir une expérience utilisateur optimale.
-            <br />Ici, vous trouverez des informations pratiques pour réussir vos projets digitaux !<br />
+            Découvrez des conseils, astuces et stratégies dans le domaine web pour faire évoluer votre entreprise. Chaque article est basé sur des solutions éprouvées et des outils testés. Ici, vous trouverez des informations pour réussir vos projets digitaux !<br />
             <span class="fw-bold">
                 CONSTRUISONS ENSEMBLE QUELQUE CHOSE D'INCROYABLE !
+
             </span>
         </p>
     </div>
 </div>
-
-<section class="section ">
-    <div class="row m-5">
+<section class="section">
+    <div class="d-flex flex-column align-items-center m-5">
         @foreach (var item in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="@item.ImgUrl" class="card-img-top w-100" alt="Blog Image" style="height: 300px;">
-                    <div class="card-body">
-                        <h2 class="card-title">@item.Title</h2>
-                        <p class="card-text">@Truncate(item.Body, 250)</p>
-                        <a asp-controller="Blogs" asp-route-id="@item.Id" asp-action="detail" class="btn btn-dark">En savoir plus</a>
-                    </div>
+            <div class="card mb-4 d-flex flex-row flex-md-row align-items-center mx-2 row" style="width: 100%;">
+                <div class="col-12 col-md-4 p-0 order-md-1">
+                    <img src="@item.ImgUrl" alt="Blog Image" class="w-100" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-12 col-md-8 card-body d-flex flex-column justify-content-center order-md-2">
+                    <h2 class="card-title">@item.Title</h2>
+                    <p class="card-text">@Html.Raw(@Truncate(item.Body, 250))</p>
+                    <a asp-controller="Blogs" asp-route-id="@item.Id" asp-action="detail" class="btn btn-dark align-self-start">En savoir plus</a>
                 </div>
             </div>
-        } 
+        }
     </div>
 </section>
+
+
