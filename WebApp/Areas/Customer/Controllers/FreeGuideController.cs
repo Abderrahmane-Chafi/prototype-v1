@@ -6,6 +6,7 @@ using Models;
 using Models.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Utility;
 using WebApp.Models;
 
 namespace WebApp.Areas.Customer.Controllers
@@ -18,7 +19,7 @@ namespace WebApp.Areas.Customer.Controllers
         private readonly IEmailSender _emailSender;
 
 
-        public FreeGuideController(IUnitOfWork unitOfWork, ILogger<FreeGuideController> logger, IEmailSender emailSender)
+        public FreeGuideController(IUnitOfWork unitOfWork, ILogger<FreeGuideController> logger,  IEmailSender emailSender)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -32,16 +33,48 @@ namespace WebApp.Areas.Customer.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(FreeGuideEmails freeGuideEmails)
+        public async Task<IActionResult> Index(FreeGuideEmails freeGuideEmails)
         {
             if (ModelState.IsValid)
             {
                 _unitOfWork.FreeGuideEmails.Add(freeGuideEmails);
                 _unitOfWork.Save();
-                _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client", "New client has been added from the free guide");
+
+                // Sending notification to your professional email
+                await _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client", "New client has been added from the free guide");
+
+                // Sending the guide PDF to the user
+                await _emailSender.SendEmailAsync(freeGuideEmails.Email,
+                    "Votre guide gratuit est prêt à être téléchargé !",
+                    @"<!DOCTYPE html>
+                    <html lang='fr'>
+                    <head>
+                        <meta charset='UTF-8'>
+                        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                        <title>Votre Guide Gratuit</title>
+                    </head>
+                    <body style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
+                        <p>Bonjour,</p>
+
+                        <p>Merci d'avoir demandé le guide ultime pour mettre votre entreprise en ligne.</p>
+                        <p>Nous vous souhaitons une excellente lecture!</p>
+        
+                        <p><strong>Chafi Abderrahmane</strong><br>
+                        <em>CA Web Solutions</em></p>
+        
+                        <p style='font-size: 0.9em;'>
+                            <strong>PS: </strong>Si vous souhaitez recevoir une analyse gratuite de votre projet, <a href='https://ca-web-solutions.net/Customer/ClientInformations'>veuillez remplir le formulaire</a>.
+                        </p>
+                    </body>
+                    </html>");
+
+
                 return RedirectToAction("ThanksPage1");
             }
-            else return View(freeGuideEmails);
+            else
+            {
+                return View(freeGuideEmails);
+            }
         }
         public IActionResult ThanksPage1()
         {

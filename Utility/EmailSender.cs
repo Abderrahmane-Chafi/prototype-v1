@@ -10,28 +10,63 @@ using System.Threading.Tasks;
 
 namespace Utility
 {
+    using MimeKit;
+    using MailKit.Net.Smtp;
+    using System.IO;
+    using System.Threading.Tasks;
+
     public class EmailSender : IEmailSender
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-
+            // Create a new email message
             var emailToSend = new MimeMessage();
-            emailToSend.From.Add(MailboxAddress.Parse("abderrahmanedev@gmail.com"));
+            emailToSend.From.Add(MailboxAddress.Parse("contact@ca-web-solutions.net"));
             emailToSend.To.Add(MailboxAddress.Parse(email));
             emailToSend.Subject = subject;
-            emailToSend.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = htmlMessage };
 
-            
-            using (var emailClient = new MailKit.Net.Smtp.SmtpClient()) // fixed ambiguity
+            // Create the body part (HTML message)
+            var body = new TextPart(MimeKit.Text.TextFormat.Html)
             {
-               
+                Text = htmlMessage
+            };
+
+            // Create a multipart to hold the message body and potentially the attachment
+            var multipart = new Multipart("mixed");
+            multipart.Add(body);
+
+            // Check if the recipient email is NOT "contact@ca-web-solutions.net"
+            if (email != "contact@ca-web-solutions.net")
+            {
+                // Create the attachment part
+                var attachment = new MimePart("application", "pdf")
+                {
+                    
+                    Content = new MimeContent(File.OpenRead(@"C:\Users\User1\Desktop\Business\WebDev\leadmagnet\Guide ultime pour mettre votre entreprise en ligne.pdf")),
+                    ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                    ContentTransferEncoding = ContentEncoding.Base64,
+                    FileName = "Guide ultime pour mettre votre entreprise en ligne.pdf"
+                };
+
+                // Add the attachment to the multipart
+                multipart.Add(attachment);
+            }
+
+            // Set the multipart as the message body
+            emailToSend.Body = multipart;
+
+            // Send the email
+            using (var emailClient = new SmtpClient())
+            {
                 emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                emailClient.Authenticate("abderrahmanedev@gmail.com", "trrveeywzyixdpnv");
+                emailClient.Authenticate("contact@ca-web-solutions.net", "ehlzsymgubngkshm");
                 emailClient.Send(emailToSend);
                 emailClient.Disconnect(true);
             }
 
             return Task.CompletedTask;
         }
+
     }
+
 }

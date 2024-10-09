@@ -20,6 +20,12 @@ builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+//// Register the notification email sender
+//builder.Services.AddScoped<IEmailSender, NotificationEmailSender>();
+
+//// Register the PDF email sender
+//builder.Services.AddScoped<IEmailSender, PdfEmailSender>();
+
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
