@@ -114,7 +114,8 @@ namespace WebApp.Areas.Customer.Controllers
         }
         public IActionResult ThanksPage2()
         {
-            return View();
+            List<Blog> blogs = _unitOfWork.Blog.GetAll().Take(3).ToList();
+            return View(blogs);
         }
     }
 }

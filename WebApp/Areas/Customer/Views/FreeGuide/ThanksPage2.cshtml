@@ -1,8 +1,17 @@
-﻿@model Models.ViewModels.ClientInformationsVM
+﻿@model List<Models.Blog>
 @{
     ViewData["Title"] = "Page de remerciement 2";
     ViewData["MetaDescription"] = "Page de remerciement 2";
     ViewData["MetaKeywords"] = "site internet, agence de développement web casablanca, développement web, consultation gratuite, application web ,CA Web Solutions";
+}
+@functions {
+    public static string Truncate(string text, int maxLength)
+    {
+        if (string.IsNullOrEmpty(text) || text.Length <= maxLength)
+            return text;
+
+        return text.Substring(0, maxLength) + "...";
+    }
 }
 
 <partial name="_Notification" />
@@ -16,13 +25,8 @@
 </div><!-- End Page Title -->
 <!-- Contact Section -->
 <section id="contact" class="contact section">
-
     <div class="container">
-
         <div class="row gy-4">
-
-
-
             <div class="col">
                 <p class="text-center">
                     Nous avons bien reçu votre demande.<br />
@@ -31,9 +35,24 @@
                     En attendant, consultez nos articles de blog pour des conseils et astuces en matière de développement Web
                 </p>
             </div><!-- End Contact Form -->
+        </div>
+        <hr />
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="@item.ImgUrl" class="card-img-top" alt="Blog Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@Html.Raw(Truncate(item.Body, 250))</p>
+                            <a asp-controller="Blogs" asp-route-id="@item.Id" asp-action="detail" class="btn btn-dark align-self-start">En savoir plus</a>
 
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
 
     </div>
-
 </section><!-- /Contact Section -->
