@@ -14,9 +14,15 @@ namespace Utility
     using MailKit.Net.Smtp;
     using System.IO;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Hosting;
 
     public class EmailSender : IEmailSender
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public EmailSender(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
+        }
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             // Create a new email message
@@ -38,11 +44,13 @@ namespace Utility
             // Check if the recipient email is NOT "contact@ca-web-solutions.net"
             if (email != "contact@ca-web-solutions.net")
             {
+                // Get the absolute path of the PDF file
+                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "leadmagnet", "Guide ultime pour mettre votre entreprise en ligne.pdf");
+
                 // Create the attachment part
                 var attachment = new MimePart("application", "pdf")
                 {
-                    
-                    Content = new MimeContent(File.OpenRead(@"C:\Users\User1\Desktop\Business\WebDev\leadmagnet\Guide ultime pour mettre votre entreprise en ligne.pdf")),
+                    Content = new MimeContent(File.OpenRead(filePath)),
                     ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
                     ContentTransferEncoding = ContentEncoding.Base64,
                     FileName = "Guide ultime pour mettre votre entreprise en ligne.pdf"
@@ -66,7 +74,6 @@ namespace Utility
 
             return Task.CompletedTask;
         }
-
     }
 
 }
