@@ -78,8 +78,8 @@
                         <ul>
                             <li><a class="original" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
                             <li><a class="original" asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a></li>
-@*                             <li><a class="original" asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a></li>
- *@
+                            <li><a class="original" asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a></li>
+
                             @* <li><a>Réalisations</a></li>
                             <li><a >Blog</a></li>       *@
                             @if (User.IsInRole(SD.Role_Admin))
@@ -116,8 +116,8 @@
                     <li class="duplicate">
                         <a asp-area="" asp-controller="ClientInformations" asp-action="Index">Consultation gratuite</a>
                     </li>
-@*                     <li class="duplicate"><a asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a></li>
- *@
+                    <li class="duplicate"><a asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a></li>
+
                     @if (User.IsInRole(SD.Role_Admin))
                     {
                         <li class="dropdown duplicate">

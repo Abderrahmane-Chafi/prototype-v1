@@ -1,8 +1,11 @@
 ﻿using DataAcess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
+using Models.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using WebApp.Models;
 
 namespace WebApp.Areas.Customer.Controllers
@@ -26,8 +29,13 @@ namespace WebApp.Areas.Customer.Controllers
         }
         public IActionResult detail(int id)
         {
-            Blog blog=_unitOfWork.Blog.GetFirstOrDefault(u => u.Id == id);  
-            return View(blog);
+            BlogVM blogVM = new()
+            {
+                blog = _unitOfWork.Blog.GetFirstOrDefault(u => u.Id == id),
+                BlogList = _unitOfWork.Blog.GetAll().Take(3)
+               
+            };
+            return View(blogVM);
         }
     }
 }
