@@ -34,7 +34,7 @@
                                     <p><small>@Model.blog.CreatedAt.ToString("dd-MM-yyyy")</small></p>
                                 </div>
                                 <div class="col d-flex justify-content-end social-links">                                  
-                                    <!-- Facebook sharing -->
+                                   @*  <!-- Facebook sharing -->
                                     <a class="text-dark mx-1"
                                        href="https://www.facebook.com/sharer/sharer.php?u=@(Url.Action("Details", "Blogs", new { area = "Customer", id = Model.blog.Id }, Context.Request.Scheme))"
                                        target="_blank">
@@ -46,7 +46,7 @@
                                        href="https://www.linkedin.com/shareArticle?mini=true&url=@(Url.Action("Details", "Blogs", new { area = "Customer", id = Model.blog.Id }, Context.Request.Scheme))"
                                        target="_blank">
                                         <i class="bi bi-linkedin"></i>
-                                    </a>
+                                    </a> *@
 
 
                                     <a class="text-dark mx-1" href="javascript:void(0);" onclick="copyLink()">
