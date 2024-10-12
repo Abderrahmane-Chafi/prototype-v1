@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quick Call</title>
+    <title>CA Web Solutions</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
@@ -29,8 +29,10 @@
                         {
                             <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Create a user</a>
                             <a class="nav-link" asp-area="Admin" asp-controller="BlogManagement" asp-action="Index">Blogs management</a>
-                            <a class="nav-link" asp-area="Admin" asp-controller="ProjectsManagement" asp-action="Index">Projects management</a>
+@*                             <a class="nav-link" asp-area="Admin" asp-controller="ProjectsManagement" asp-action="Index">Projects management</a>*@                            
                             <a class="nav-link" asp-area="Admin" asp-controller="ClientInformations" asp-action="Index">Client informations</a>
+                            <a class="nav-link" asp-area="Admin" asp-controller="FreeGuideEmails" asp-action="Index">Free guide emails</a>
+
                         }
                     </ul>
                     </ul><partial name="_LoginPartial" />
