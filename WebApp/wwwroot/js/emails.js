@@ -10,7 +10,7 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Admin/ClientInformations/GetAll"
+            "url": "/Admin/FreeGuideEmails/GetAll"
         },
         "columns": [
             { "data": "email", "widht": "15%" },
