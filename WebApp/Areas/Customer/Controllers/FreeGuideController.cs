@@ -35,18 +35,26 @@ namespace WebApp.Areas.Customer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(FreeGuideEmails freeGuideEmails)
         {
-            if (ModelState.IsValid)
+            FreeGuideEmails? freeGuideEmails1 = _unitOfWork.FreeGuideEmails.GetFirstOrDefault(u => u.Email == freeGuideEmails.Email);
+            if (freeGuideEmails1 != null && freeGuideEmails.Email == freeGuideEmails1.Email)
             {
-                _unitOfWork.FreeGuideEmails.Add(freeGuideEmails);
-                _unitOfWork.Save();
+                ModelState.AddModelError("Email", "Vous avez déjà demandé le guide gratuit");
+                return View(freeGuideEmails);
+            }
+            else {
+                if (ModelState.IsValid)
+                {
 
-                // Sending notification to your professional email
-                await _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client", "New client has been added from the free guide");
+                    _unitOfWork.FreeGuideEmails.Add(freeGuideEmails);
+                    _unitOfWork.Save();
 
-                // Sending the guide PDF to the user
-                await _emailSender.SendEmailAsync(freeGuideEmails.Email,
-                    "Votre guide gratuit est prêt à être téléchargé !",
-                    @"<!DOCTYPE html>
+                    // Sending notification to your professional email
+                    await _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client", "New client has been added from the free guide");
+
+                    // Sending the guide PDF to the user
+                    await _emailSender.SendEmailAsync(freeGuideEmails.Email,
+                        "Votre guide gratuit est prêt à être téléchargé !",
+                        @"<!DOCTYPE html>
                     <html lang='fr'>
                     <head>
                         <meta charset='UTF-8'>
@@ -69,12 +77,14 @@ namespace WebApp.Areas.Customer.Controllers
                     </html>");
 
 
-                return RedirectToAction("ThanksPage1");
+                    return RedirectToAction("ThanksPage1");
+                }
+                else
+                {
+                    return View(freeGuideEmails);
+                }
             }
-            else
-            {
-                return View(freeGuideEmails);
-            }
+            
         }
         public IActionResult ThanksPage1()
         {
