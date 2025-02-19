@@ -27,7 +27,7 @@ namespace Utility
         {
             // Create a new email message
             var emailToSend = new MimeMessage();
-            emailToSend.From.Add(MailboxAddress.Parse("contact@ca-web-solutions.net"));
+            emailToSend.From.Add(MailboxAddress.Parse("contact@cash-flow-creators.net"));
             emailToSend.To.Add(MailboxAddress.Parse(email));
             emailToSend.Subject = subject;
 
@@ -42,7 +42,7 @@ namespace Utility
             multipart.Add(body);
 
             // Check if the recipient email is NOT "contact@ca-web-solutions.net"
-            if (email != "contact@ca-web-solutions.net")
+            if (email != "contact@cash-flow-creators.net")
             {
                 // Get the absolute path of the PDF file
                 var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "leadmagnet", "Guide ultime pour mettre votre entreprise en ligne.pdf");
@@ -67,7 +67,7 @@ namespace Utility
             using (var emailClient = new SmtpClient())
             {
                 emailClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                emailClient.Authenticate("contact@ca-web-solutions.net", "ehlzsymgubngkshm");
+                emailClient.Authenticate("contact@cash-flow-creators.net", "vqrilybcioasstyf");
                 emailClient.Send(emailToSend);
                 emailClient.Disconnect(true);
             }

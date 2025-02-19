@@ -50,7 +50,7 @@ namespace WebApp.Areas.Customer.Controllers
                 _unitOfWork.ClientInformation.Add(obj.clientInformation);                
                 _unitOfWork.Save();
                 TempData["success"] = "informations envoyées avec succès !";
-                _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client has been added", obj.clientInformation.Name + " from " + obj.clientInformation.CompanyName + " has been added to the database");
+                _emailSender.SendEmailAsync("contact@cash-flow-creators.net", "New client has been added", obj.clientInformation.Name + " from " + obj.clientInformation.CompanyName + " has been added to the database");
                 return RedirectToAction("Index");
             }
             else return View(obj);

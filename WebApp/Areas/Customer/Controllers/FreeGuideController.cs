@@ -49,7 +49,7 @@ namespace WebApp.Areas.Customer.Controllers
                     _unitOfWork.Save();
 
                     // Sending notification to your professional email
-                    await _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client", "New client has been added from the free guide");
+                    await _emailSender.SendEmailAsync("contact@cash-flow-creators.net", "New client", "New client has been added from the free guide");
 
                     // Sending the guide PDF to the user
                     await _emailSender.SendEmailAsync(freeGuideEmails.Email,
@@ -116,7 +116,7 @@ namespace WebApp.Areas.Customer.Controllers
                 _unitOfWork.ClientInformation.Add(obj.clientInformation);
                 _unitOfWork.Save();
                 //TempData["success"] = "informations envoyées avec succès !";
-                _emailSender.SendEmailAsync("contact@ca-web-solutions.net", "New client has been added", obj.clientInformation.Name + " from " + obj.clientInformation.CompanyName + " has been added to the database");
+                _emailSender.SendEmailAsync("contact@cash-flow-creators.net", "New client has been added", obj.clientInformation.Name + " from " + obj.clientInformation.CompanyName + " has been added to the database");
                 return RedirectToAction("ThanksPage2");
             }
             else return View(obj);
